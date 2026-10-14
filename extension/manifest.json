@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "minimum_chrome_version": "121",
+  "name": "Helium — AI-safe Tab Sleeper",
+  "version": "1.0.0",
+  "description": "Unload inactive non-AI tabs after five minutes. Keeps the tab open; protects AI sites and tabs marked for agent work.",
+  "permissions": ["tabs", "alarms", "storage"],
+  "background": {"service_worker": "worker.mjs", "type": "module"},
+  "action": {"default_title": "Tab Sleeper: five minutes, AI protected", "default_popup": "popup.html"},
+  "content_scripts": [{"matches": ["http://*/*", "https://*/*"], "js": ["guard.js"], "run_at": "document_start", "all_frames": true}],
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; connect-src 'none'"}
+}
